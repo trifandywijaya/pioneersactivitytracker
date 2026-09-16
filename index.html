@@ -21,6 +21,58 @@ button,input,select,textarea{font:inherit}.app{display:grid;grid-template-column
 .calendarHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.calendarHead h2{margin:0;font-size:18px}.calendarWeek,.calendar{display:grid;grid-template-columns:repeat(7,1fr)}.calendarWeek b{padding:9px;color:#7a8498;font-size:11px;text-align:center}.calday{min-height:125px;border-top:1px solid #e7ebf2;border-left:1px solid #e7ebf2;padding:8px;background:#fff}.calday:nth-child(7n){border-right:1px solid #e7ebf2}.calday.out{background:#f8fafc;color:#a0a8b7}.calnum{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:12px;margin-bottom:6px}.calnum.today span{background:#4f46e5;color:#fff;border-radius:999px;width:25px;height:25px;display:grid;place-items:center}.calevent{font-size:11px;background:#eef2ff;color:#3730a3;border-radius:7px;padding:5px 6px;margin:4px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.calagent{font-size:10px;color:#7a8498}.teamgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.agentcard{background:#fff;border:1px solid #e7ebf2;border-radius:16px;padding:16px}.agenttop{display:flex;justify-content:space-between;gap:10px;align-items:center}.badgeActive{background:#dcfce7;color:#15803d;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.badgeInactive{background:#f3f4f6;color:#6b7280;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.agentstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.agentstats div{background:#f8fafc;border-radius:10px;padding:9px;font-size:12px}.agentbuttons{display:flex;gap:7px}
 @media(max-width:1000px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.week{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.calendar{min-width:850px}.calendarWeek{min-width:850px}.card:has(.calendar){overflow-x:auto}.app{grid-template-columns:1fr}.side{position:static;height:auto}.nav{display:flex;overflow:auto}.nav button{min-width:max-content}.main{padding:18px}.cards{grid-template-columns:1fr}.week{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+
+/* ===== PIONEERS MOBILE UI v1.5 ===== */
+.mobileNav{display:none}
+.tableScroller{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:760px){
+  body{background:#f5f7fb}
+  .app{display:block;min-height:100vh}
+  .side{display:none}
+  .main{padding:16px 14px 92px;min-width:0}
+  .top{margin-bottom:16px;position:sticky;top:0;z-index:8;background:#f5f7fb;padding:8px 0 10px}
+  .title h1{font-size:22px}
+  .title p{font-size:12px;max-width:250px}
+  .avatar{padding:9px 11px;border-radius:12px}
+  .cards{grid-template-columns:1fr 1fr;gap:10px}
+  .card{border-radius:15px;padding:14px}
+  .kpi b{font-size:23px}
+  .kpi small{font-size:10px}
+  .grid{grid-template-columns:1fr;gap:12px;margin-top:12px}
+  .event{grid-template-columns:50px 1fr;gap:8px;padding:10px}
+  .event .status{grid-column:2;width:max-content}
+  .section-title{gap:10px;align-items:flex-start}
+  .section-title h3{font-size:15px}
+  .toolbar{display:grid;grid-template-columns:1fr;gap:8px}
+  .toolbar input,.toolbar select{width:100%}
+  .primary,.secondary{min-height:42px}
+  .teamgrid{grid-template-columns:1fr}
+  .agentbuttons{flex-wrap:wrap}
+  .modal{align-items:end}
+  .modalbox{width:100%;max-width:none;border-radius:22px 22px 0 0;padding:20px 16px;max-height:92vh}
+  .row{grid-template-columns:1fr}
+  .modalbox input,.modalbox select,.modalbox textarea{font-size:16px;min-height:44px}
+  .modalbox textarea{height:95px}
+  .calendarHead{position:sticky;left:0;min-width:100%;gap:8px}
+  .calendarHead h2{font-size:16px}
+  .calendarWeek,.calendar{min-width:760px}
+  .calday{min-height:112px;padding:6px}
+  .calevent{white-space:normal;line-height:1.25}
+  #schedule .card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:760px}
+  #performance table{min-width:680px}
+  #clients .card,#performance .card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #clients .section-title,#clients .toolbar,#performance .section-title{position:sticky;left:0;min-width:calc(100vw - 58px)}
+  .mobileNav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(17,24,39,.97);padding:7px 5px max(7px,env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(15,23,42,.16)}
+  .mobileNav button{border:0;background:transparent;color:#94a3b8;padding:7px 2px 5px;border-radius:10px;font-size:10px;cursor:pointer}
+  .mobileNav button span{display:block;font-size:19px;line-height:20px;margin-bottom:3px}
+  .mobileNav button.active{color:white;background:#27324a}
+}
+@media(max-width:390px){
+  .cards{grid-template-columns:1fr}
+  .title p{max-width:210px}
+}
+
 </style>
 </head>
 <body>
@@ -130,7 +182,7 @@ let follow=state.activities.filter(a=>a.date.slice(0,10)===today).length, overdu
 dbCount.textContent=total; activityRate.textContent=(total?Math.round(prospected/total*100):0)+"%"; followToday.textContent=follow; overdueText.textContent=follow+" activity scheduled"; closeCount.textContent=closing; closeRate.textContent=(prospected?(closing/prospected*100).toFixed(1):0)+"% closing/recruited rate";
 todayPill.textContent=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short"}).toUpperCase();
 let acts=state.activities.filter(a=>a.date.slice(0,10)===today).sort((a,b)=>a.date.localeCompare(b.date));
-todaySchedule.innerHTML=acts.length?acts.map(a=>{let c=clientById(a.clientId);return `<div class="event" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><div class="time">${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</div><div><b>${esc(c?.name||"Unknown")}</b><br><small>${esc(a.note||a.type)}</small></div><span class="status ${statusClass(a.status)}">${esc(a.status).toUpperCase()}</span></div>`}).join(""):`<div class="empty">Belum ada schedule hari ini.</div>`;
+todaySchedule.innerHTML=acts.length?acts.map(a=>{let c=clientById(a.clientId);return `<div class="event" role="button" tabindex="0" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><div class="time">${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</div><div><b>${esc(c?.name||"Unknown")}</b><br><small>${esc(a.note||a.type)}</small></div><span class="status ${statusClass(a.status)}">${esc(a.status).toUpperCase()}</span></div>`}).join(""):`<div class="empty">Belum ada schedule hari ini.</div>`;
 let priority=state.clients.filter(c=>c.follow&&c.follow<=today&&c.status!=="Closing/Recruited");
 aiSummary.innerHTML=priority.length?`<p><b>${priority.length} prospects</b> need follow-up. ${esc(priority[0].name)} is one of the highest priorities.</p><p><b>Suggested action:</b> contact overdue prospects first, then today's scheduled follow-ups.</p>`:`<p>Tidak ada follow-up yang jatuh tempo hari ini.</p><p><b>Suggested action:</b> fokus ke appointment dan referral.</p>`;
 }
@@ -153,7 +205,7 @@ function renderSchedule(){
    let acts=state.activities.filter(a=>a.date.slice(0,10)===ds).sort((a,b)=>a.date.localeCompare(b.date));
    let isToday=ds===dateOffset(0), outside=d.getMonth()!==m;
    cells.push(`<div class="calday ${outside?'out':''}"><div class="calnum ${isToday?'today':''}"><span>${d.getDate()}</span></div>
-   ${acts.slice(0,4).map(a=>{let c=clientById(a.clientId);return `<div class="calevent" title="${esc(a.note||a.type)}" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><b>${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</b> ${esc(c?.name||"Unknown")}<div class="calagent">${esc(c?.agent||"")} · ${esc(a.type)}</div></div>`}).join("")}
+   ${acts.slice(0,4).map(a=>{let c=clientById(a.clientId);return `<div class="calevent" title="${esc(a.note||a.type)}" role="button" tabindex="0" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><b>${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</b> ${esc(c?.name||"Unknown")}<div class="calagent">${esc(c?.agent||"")} · ${esc(a.type)}</div></div>`}).join("")}
    ${acts.length>4?`<div class="calagent">+${acts.length-4} more</div>`:""}</div>`);
  }
  calendarGrid.innerHTML=cells.join("");
@@ -183,7 +235,14 @@ function fillClientSelect(){activityClient.innerHTML=state.clients.map(c=>`<opti
 function openClient(c={}){clientId.value=c.id||"";clientName.value=c.name||"";fillAgentSelect();clientAgent.value=c.agent||(activeAgents()[0]?.name||"");clientSource.value=c.source||"Referral";clientStatus.value=c.status||"Belum Diprospek";clientPhone.value=c.phone||"";clientNote.value=c.note||"";clientApe.value=c.ape||"";clientModalTitle.textContent=c.id?"Edit Client":"Add Client";clientModal.classList.add("open")}
 window.editClient=id=>openClient(clientById(id));
 window.deleteClient=id=>{if(confirm("Hapus client ini?")){state.clients=state.clients.filter(c=>c.id!==id);state.activities=state.activities.filter(a=>a.clientId!==id);save()}}
-document.querySelectorAll(".nav button").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));document.getElementById(btn.dataset.page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");pageTitle.textContent=btn.dataset.page==="ai"?"AI Assistant":btn.dataset.page[0].toUpperCase()+btn.dataset.page.slice(1)});
+function goPage(page){
+ document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(page).classList.remove("hidden");
+ document.querySelectorAll(".nav button,.mobileNav button").forEach(x=>x.classList.toggle("active",x.dataset.page===page));
+ pageTitle.textContent=page==="ai"?"AI Assistant":page[0].toUpperCase()+page.slice(1);
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button,.mobileNav button").forEach(btn=>btn.onclick=()=>goPage(btn.dataset.page));
 STATUSES.forEach(x=>{clientStatus.insertAdjacentHTML("beforeend",`<option>${x}</option>`);activityStatus.insertAdjacentHTML("beforeend",`<option>${x}</option>`)});
 addAgentBtn.onclick=()=>{agentId.value="";agentName.value="";agentActive.value="true";agentModalTitle.textContent="Add Agent";agentModal.classList.add("open")};
 saveAgentBtn.onclick=()=>{let name=agentName.value.trim();if(!name)return alert("Nama agent wajib diisi.");let duplicate=state.agents.some(a=>a.name.toLowerCase()===name.toLowerCase()&&a.id!==agentId.value);if(duplicate)return alert("Nama agent sudah ada.");if(agentId.value){let a=state.agents.find(x=>x.id===agentId.value);if(a){let old=a.name;a.name=name;a.active=agentActive.value==="true";state.clients.forEach(c=>{if(c.agent===old)c.agent=name})}}else state.agents.push({id:crypto.randomUUID(),name,active:agentActive.value==="true"});agentModal.classList.remove("open");save()};
@@ -222,4 +281,13 @@ generateMsg.onclick=()=>{let today=dateOffset(0),c=state.clients.find(x=>x.follo
 askAiBtn.onclick=()=>{let q=aiQuestion.value.toLowerCase(),today=dateOffset(0), overdue=state.clients.filter(c=>c.follow&&c.follow<=today&&c.status!=="Closing/Recruited");let ans=q.includes("follow")?`Ada ${overdue.length} client yang perlu follow-up sekarang: ${overdue.slice(0,5).map(c=>c.name).join(", ")||"tidak ada"}.`:q.includes("closing")?`Total closing/recruited saat ini ${state.clients.filter(c=>c.status==="Closing/Recruited").length}.`:`Saat ini ada ${state.clients.length} client, ${state.activities.length} activity tercatat, dan ${overdue.length} follow-up jatuh tempo.`;aiAnswer.innerHTML=`<div class="insight">${esc(ans)}</div>`};
 renderAll();
 </script>
+
+<nav class="mobileNav">
+<button class="active" data-page="dashboard"><span>⌂</span>Home</button>
+<button data-page="schedule"><span>▦</span>Schedule</button>
+<button data-page="clients"><span>◎</span>Clients</button>
+<button data-page="performance"><span>↗</span>Performance</button>
+<button data-page="team"><span>♟</span>Team</button>
+</nav>
+
 </body></html>
