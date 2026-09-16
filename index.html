@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pioneers</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:#f5f7fb;color:#172033}
+button,input,select,textarea{font:inherit}.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{background:#111827;color:white;padding:28px 18px;position:sticky;top:0;height:100vh}
+.brand{font-size:21px;font-weight:800;letter-spacing:.5px;margin:0 10px 30px}.brand span{color:#818cf8}.nav button{width:100%;border:0;background:transparent;color:#cbd5e1;text-align:left;padding:13px 14px;border-radius:12px;margin:3px 0;font-size:14px;cursor:pointer}
+.nav button.active,.nav button:hover{background:#252f43;color:#fff}.main{padding:28px 34px;min-width:0}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.title h1{margin:0;font-size:25px}.title p{margin:5px 0;color:#7a8498;font-size:14px}
+.avatar{background:#111827;color:white;padding:10px 14px;border-radius:14px;font-weight:700}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;border:1px solid #e7ebf2;border-radius:18px;padding:18px;box-shadow:0 4px 18px rgba(15,23,42,.04)}
+.kpi small{color:#7a8498;font-weight:700}.kpi b{display:block;font-size:28px;margin-top:7px}.up{color:#059669;font-size:12px}.warn{color:#a16207;font-size:12px}.grid{display:grid;grid-template-columns:1.45fr .8fr;gap:16px;margin-top:16px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.section-title h3{margin:0;font-size:16px}.pill{padding:6px 10px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:12px;font-weight:700}
+.schedule{display:grid;gap:9px}.event{display:grid;grid-template-columns:60px 1fr auto;gap:10px;align-items:center;padding:12px;border:1px solid #edf0f5;border-radius:13px}.event .time{font-weight:800}.event small{color:#7a8498}
+.status{font-size:11px;font-weight:800;padding:6px 9px;border-radius:999px}.follow{background:#fff7db;color:#a16207}.appt{background:#dbeafe;color:#1d4ed8}.close{background:#dcfce7;color:#15803d}.hot{background:#dcfce7;color:#059669}.pending{background:#f3f4f6;color:#6b7280}
+.ai{background:linear-gradient(145deg,#111827,#27324a);color:white}.ai p{color:#d5dbea;line-height:1.5;font-size:13px}.ai .action{background:white;color:#111827;border:0;padding:10px 12px;border-radius:11px;font-weight:800;cursor:pointer}
+.tablewrap{margin-top:16px}.toolbar{display:flex;gap:9px;margin-bottom:13px}.toolbar input,.toolbar select,.field{border:1px solid #dde3ed;background:#fff;padding:10px 12px;border-radius:11px}.toolbar input{flex:1}.primary{border:0;background:#4f46e5;color:white;border-radius:11px;padding:10px 14px;font-weight:800;cursor:pointer}.secondary{border:0;background:#eef2ff;color:#4338ca;border-radius:11px;padding:10px 14px;font-weight:800;cursor:pointer}
+.danger{border:0;background:#fee2e2;color:#b91c1c;border-radius:9px;padding:7px 9px;cursor:pointer}table{width:100%;border-collapse:collapse;font-size:13px}th{text-align:left;color:#7a8498;font-size:11px;padding:10px;border-bottom:1px solid #e9edf4}td{padding:12px 10px;border-bottom:1px solid #f0f2f6}.note{max-width:300px;color:#667085}
+.bar{height:7px;background:#e9edf4;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:#6366f1}.hidden{display:none}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}.day{background:white;border:1px solid #e7ebf2;border-radius:15px;padding:12px;min-height:230px}.day h4{margin:0 0 12px}.mini{background:#f8fafc;border-left:3px solid #6366f1;border-radius:8px;padding:9px;margin:8px 0;font-size:12px;cursor:pointer}
+.modal{position:fixed;inset:0;background:#11182780;display:none;place-items:center;z-index:20}.modal.open{display:grid}.modalbox{background:white;width:min(620px,92vw);padding:24px;border-radius:20px;max-height:90vh;overflow:auto}.modalbox input,.modalbox select,.modalbox textarea{width:100%;margin:6px 0 12px;padding:10px;border:1px solid #dce2eb;border-radius:10px}.modalbox textarea{height:90px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.muted{color:#7a8498}.empty{color:#94a3b8;text-align:center;padding:24px}.actions{display:flex;gap:6px}.insight{background:#f8fafc;border-radius:12px;padding:12px;margin:10px 0}
+.calendarHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.calendarHead h2{margin:0;font-size:18px}.calendarWeek,.calendar{display:grid;grid-template-columns:repeat(7,1fr)}.calendarWeek b{padding:9px;color:#7a8498;font-size:11px;text-align:center}.calday{min-height:125px;border-top:1px solid #e7ebf2;border-left:1px solid #e7ebf2;padding:8px;background:#fff}.calday:nth-child(7n){border-right:1px solid #e7ebf2}.calday.out{background:#f8fafc;color:#a0a8b7}.calnum{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:12px;margin-bottom:6px}.calnum.today span{background:#4f46e5;color:#fff;border-radius:999px;width:25px;height:25px;display:grid;place-items:center}.calevent{font-size:11px;background:#eef2ff;color:#3730a3;border-radius:7px;padding:5px 6px;margin:4px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.calagent{font-size:10px;color:#7a8498}.teamgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.agentcard{background:#fff;border:1px solid #e7ebf2;border-radius:16px;padding:16px}.agenttop{display:flex;justify-content:space-between;gap:10px;align-items:center}.badgeActive{background:#dcfce7;color:#15803d;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.badgeInactive{background:#f3f4f6;color:#6b7280;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.agentstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.agentstats div{background:#f8fafc;border-radius:10px;padding:9px;font-size:12px}.agentbuttons{display:flex;gap:7px}
+@media(max-width:1000px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.week{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.calendar{min-width:850px}.calendarWeek{min-width:850px}.card:has(.calendar){overflow-x:auto}.app{grid-template-columns:1fr}.side{position:static;height:auto}.nav{display:flex;overflow:auto}.nav button{min-width:max-content}.main{padding:18px}.cards{grid-template-columns:1fr}.week{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side"><div class="brand">Pioneers</div><div class="nav">
+<button class="active" data-page="dashboard">⌂ Dashboard</button><button data-page="schedule">▦ Schedule</button><button data-page="clients">◎ Clients</button><button data-page="performance">↗ Performance</button><button data-page="team">♟ Team Management</button><button data-page="ai">✦ AI Assistant</button>
+</div></aside>
+<main class="main">
+<div class="top"><div class="title"><h1 id="pageTitle">Dashboard</h1><p>Insurance activity & follow-up workspace</p></div><div class="avatar">TW</div></div>
+
+<section id="dashboard" class="page">
+<div class="cards">
+<div class="card kpi"><small>TOTAL DATABASE</small><b id="dbCount">0</b><span class="up" id="dbSub">Client aktif</span></div>
+<div class="card kpi"><small>ACTIVITY RATE</small><b id="activityRate">0%</b><span class="up">prospek yang sudah di-contact</span></div>
+<div class="card kpi"><small>SCHEDULE TODAY</small><b id="followToday">0</b><span class="warn" id="overdueText">0 overdue</span></div>
+<div class="card kpi"><small>CLOSING / RECRUITED</small><b id="closeCount">0</b><span class="up" id="closeRate">0% closing/recruited rate</span></div>
+</div>
+<div class="grid">
+<div class="card"><div class="section-title"><h3>Today's Schedule</h3><span class="pill" id="todayPill"></span></div><div class="schedule" id="todaySchedule"></div></div>
+<div class="card ai"><div class="section-title"><h3>✦ AI Sales Assistant</h3></div><div id="aiSummary"></div><button class="action" id="generateMsg">Generate message</button></div>
+</div>
+</section>
+
+<section id="schedule" class="page hidden">
+<div class="section-title"><div><h3 style="margin:0">Schedule</h3><div class="muted" style="margin-top:5px">Lihat seluruh tanggal dan activity tim.</div></div><button class="primary" id="addActivityBtn">+ Add Schedule</button></div>
+<div class="card">
+<div class="calendarHead"><button class="secondary" id="prevMonth">‹</button><h2 id="calendarTitle"></h2><div><button class="secondary" id="todayMonth">Today</button> <button class="secondary" id="nextMonth">›</button></div></div>
+<div class="calendarWeek"><b>MON</b><b>TUE</b><b>WED</b><b>THU</b><b>FRI</b><b>SAT</b><b>SUN</b></div>
+<div class="calendar" id="calendarGrid"></div>
+</div>
+</section>
+
+<section id="clients" class="page hidden">
+<div class="card"><div class="section-title"><h3>Client Database</h3><button class="primary" id="newClientBtn">+ New Client</button></div>
+<div class="toolbar"><input id="search" placeholder="Search client..."><select id="filter"><option>All Status</option><option>Belum Diprospek</option><option>Follow Up</option><option>Appointment</option><option>Presentation</option><option>Closing</option><option>Hot</option><option>Pending</option></select></div>
+<table><thead><tr><th>CLIENT</th><th>AGENT</th><th>STATUS</th><th>KETERANGAN / NOTES</th><th>APE</th><th></th></tr></thead><tbody id="clientRows"></tbody></table></div>
+</section>
+
+<section id="performance" class="page hidden">
+<div class="card"><div class="section-title"><h3>Team Performance</h3><span class="pill">LIVE DATA</span></div>
+<table><thead><tr><th>AGENT</th><th>DATABASE</th><th>ACTIVITY</th><th>ACTIVITY %</th><th>CLOSING</th><th>RATE</th><th>APE</th></tr></thead><tbody id="performanceRows"></tbody></table></div>
+</section>
+
+
+<section id="team" class="page hidden">
+<div class="section-title"><div><h3 style="margin:0">Team Management</h3><div class="muted" style="margin-top:5px">Tambah, edit, nonaktifkan, atau hapus agent tanpa mengubah coding.</div></div><button class="primary" id="addAgentBtn">+ Add Agent</button></div>
+<div class="teamgrid" id="teamGrid"></div>
+</section>
+
+<section id="ai" class="page hidden"><div class="grid">
+<div class="card ai"><h3>✦ Ask your sales data</h3><p>Contoh: “Siapa yang harus aku follow up hari ini?”</p><textarea id="aiQuestion" class="field" style="width:100%;height:100px" placeholder="Ask AI..."></textarea><br><br><button class="action" id="askAiBtn">Ask AI</button><div id="aiAnswer" style="margin-top:14px"></div></div>
+<div class="card"><h3>AI Insight</h3><div id="insightList"></div></div></div>
+</section>
+</main></div>
+
+<div id="clientModal" class="modal"><div class="modalbox"><h2 id="clientModalTitle">Add Client</h2>
+<input type="hidden" id="clientId"><div class="row"><div><label>Name</label><input id="clientName"></div><div><label>Agent</label><select id="clientAgent"></select></div></div>
+<div class="row"><div><label>Source</label><input id="clientSource" placeholder="Referral / Instagram / Existing Client"></div><div><label>Status</label><select id="clientStatus"></select></div></div>
+<div><label>Phone</label><input id="clientPhone"></div>
+<label>Keterangan / Notes</label><textarea id="clientNote"></textarea><label>APE / Omzet</label><input id="clientApe" type="number" min="0">
+<button class="primary" id="saveClientBtn">Save Client</button> <button class="secondary closeModal">Cancel</button></div></div>
+
+<div id="activityModal" class="modal"><div class="modalbox"><h2 id="activityModalTitle">Add Schedule</h2><input type="hidden" id="activityId">
+<div class="row"><div><label>Client</label><select id="activityClient"></select></div><div><label>Date & Time</label><input id="activityDate" type="datetime-local"></div></div>
+<div class="row"><div><label>Activity</label><select id="activityType"><option>Prospek</option><option>Rekrut</option><option>P1</option><option>P2</option><option>Bonding</option></select></div><div><label>Status after activity</label><select id="activityStatus"></select></div></div>
+<label>Notes</label><textarea id="activityNote"></textarea><button class="primary" id="saveActivityBtn">Save Schedule</button> <button class="danger hidden" id="deleteActivityBtn">Delete</button> <button class="secondary closeModal">Cancel</button></div></div>
+
+
+<div id="agentModal" class="modal"><div class="modalbox"><h2 id="agentModalTitle">Add Agent</h2>
+<input type="hidden" id="agentId"><label>Nama Agent</label><input id="agentName" placeholder="Nama agent">
+<label>Status</label><select id="agentActive"><option value="true">Active</option><option value="false">Inactive</option></select>
+<button class="primary" id="saveAgentBtn">Save Agent</button> <button class="secondary closeModal">Cancel</button></div></div>
+
+<script>
+const DEFAULT_AGENTS=["Michael","Atifal","Nelson","Dimas","Dixon","Denmil","Cebe","Lyma","Keyra","Putri","Edmar","Thania"];
+const STATUSES=["Belum Diprospek","Belum Direkrut","Follow Up","Appointment","Presentation","Closing/Recruited","Pending","Tidak Minat"];
+const KEY="pioneers-os-v1";
+const seed={agents:DEFAULT_AGENTS.map(name=>({id:crypto.randomUUID(),name,active:true})),
+clients:[
+{id:crypto.randomUUID(),name:"Kevin Wijaya",source:"Referral",agent:"Michael",status:"Follow Up",phone:"",follow:dateOffset(0),note:"Sudah menikah, 1 anak. Concern biaya RS. Mau diskusi dengan istri.",ape:0},
+{id:crypto.randomUUID(),name:"Pandu",source:"Instagram",agent:"Atifal",status:"Appointment",phone:"",follow:dateOffset(0),note:"Tertarik medical. Appointment untuk needs analysis.",ape:0},
+{id:crypto.randomUUID(),name:"Audrey",source:"Existing Client",agent:"Nelson",status:"Closing/Recruited",phone:"",follow:"",note:"Case completed. Ask for referral next week.",ape:18000000},
+{id:crypto.randomUUID(),name:"Stephanie",source:"Referral",agent:"Michael",status:"Follow Up",phone:"",follow:dateOffset(0),note:"Decision follow up.",ape:0}
+],activities:[]};
+function dateOffset(n){let d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}
+function localDT(hour,minute){let d=new Date();d.setHours(hour,minute,0,0);return d.toISOString().slice(0,16)}
+seed.activities=[
+{id:crypto.randomUUID(),clientId:seed.clients[0].id,date:localDT(10,0),type:"Prospek",status:"Follow Up",note:"WhatsApp follow up"},
+{id:crypto.randomUUID(),clientId:seed.clients[1].id,date:localDT(13,0),type:"P1",status:"Appointment",note:"Needs analysis meeting"},
+{id:crypto.randomUUID(),clientId:seed.clients[2].id,date:localDT(16,30),type:"P2",status:"Closing/Recruited",note:"Product presentation"},
+{id:crypto.randomUUID(),clientId:seed.clients[3].id,date:localDT(19,0),type:"Prospek",status:"Follow Up",note:"Decision follow up"}];
+let state=JSON.parse(localStorage.getItem(KEY)||"null")||seed;
+if(!state.agents) state.agents=DEFAULT_AGENTS.map(name=>({id:crypto.randomUUID(),name,active:true}));
+state.clients.forEach(c=>{if(c.status==="Closing/Recruited")c.status="Closing/Recruited";if(c.status==="Hot")c.status="Follow Up"});
+state.activities.forEach(a=>{if(a.status==="Closing/Recruited")a.status="Closing/Recruited";if(a.status==="Hot")a.status="Follow Up"});
+function activeAgents(){return state.agents.filter(a=>a.active)}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));renderAll()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function money(n){return n?Number(n).toLocaleString("id-ID"):"—"}
+function fmtDate(s){if(!s)return"—";return new Date(s+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
+function clientById(id){return state.clients.find(c=>c.id===id)}
+function statusClass(s){if(s==="Follow Up")return"follow";if(["Appointment","Presentation"].includes(s))return"appt";if(s==="Closing/Recruited")return"close";if(s==="Hot")return"hot";return"pending"}
+function renderAll(){renderDashboard();renderClients();renderSchedule();renderPerformance();renderInsights();renderTeam();fillClientSelect();fillAgentSelect()}
+function renderDashboard(){
+let total=state.clients.length, prospected=state.clients.filter(c=>c.status!=="Belum Diprospek").length, closing=state.clients.filter(c=>c.status==="Closing/Recruited").length, today=dateOffset(0);
+let follow=state.activities.filter(a=>a.date.slice(0,10)===today).length, overdue=0;
+dbCount.textContent=total; activityRate.textContent=(total?Math.round(prospected/total*100):0)+"%"; followToday.textContent=follow; overdueText.textContent=follow+" activity scheduled"; closeCount.textContent=closing; closeRate.textContent=(prospected?(closing/prospected*100).toFixed(1):0)+"% closing/recruited rate";
+todayPill.textContent=new Date().toLocaleDateString("en-GB",{day:"2-digit",month:"short"}).toUpperCase();
+let acts=state.activities.filter(a=>a.date.slice(0,10)===today).sort((a,b)=>a.date.localeCompare(b.date));
+todaySchedule.innerHTML=acts.length?acts.map(a=>{let c=clientById(a.clientId);return `<div class="event" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><div class="time">${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</div><div><b>${esc(c?.name||"Unknown")}</b><br><small>${esc(a.note||a.type)}</small></div><span class="status ${statusClass(a.status)}">${esc(a.status).toUpperCase()}</span></div>`}).join(""):`<div class="empty">Belum ada schedule hari ini.</div>`;
+let priority=state.clients.filter(c=>c.follow&&c.follow<=today&&c.status!=="Closing/Recruited");
+aiSummary.innerHTML=priority.length?`<p><b>${priority.length} prospects</b> need follow-up. ${esc(priority[0].name)} is one of the highest priorities.</p><p><b>Suggested action:</b> contact overdue prospects first, then today's scheduled follow-ups.</p>`:`<p>Tidak ada follow-up yang jatuh tempo hari ini.</p><p><b>Suggested action:</b> fokus ke appointment dan referral.</p>`;
+}
+function renderClients(){
+let q=search.value.toLowerCase(),f=filter.value;
+let rows=state.clients.filter(c=>(c.name+" "+c.agent+" "+c.note+" "+c.source).toLowerCase().includes(q)&&(f==="All Status"||c.status===f));
+clientRows.innerHTML=rows.length?rows.map(c=>`<tr><td><b>${esc(c.name)}</b><br><small>${esc(c.source)}</small></td><td>${esc(c.agent)}</td><td><span class="status ${statusClass(c.status)}">${esc(c.status)}</span></td><td class="note">${esc(c.note)}</td><td>${money(c.ape)}</td><td class="actions"><button class="secondary" onclick="editClient('${c.id}')">Edit</button><button class="danger" onclick="deleteClient('${c.id}')">×</button></td></tr>`).join(""):`<tr><td colspan="6" class="empty">Tidak ada client.</td></tr>`;
+}
+let calendarCursor=new Date(); calendarCursor.setDate(1);
+function renderSchedule(){
+ const y=calendarCursor.getFullYear(), m=calendarCursor.getMonth();
+ calendarTitle.textContent=calendarCursor.toLocaleDateString("en-US",{month:"long",year:"numeric"});
+ const first=new Date(y,m,1), last=new Date(y,m+1,0);
+ const mondayIndex=(first.getDay()+6)%7;
+ const startDate=new Date(y,m,1-mondayIndex);
+ let cells=[];
+ for(let i=0;i<42;i++){
+   let d=new Date(startDate); d.setDate(startDate.getDate()+i);
+   let ds=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+   let acts=state.activities.filter(a=>a.date.slice(0,10)===ds).sort((a,b)=>a.date.localeCompare(b.date));
+   let isToday=ds===dateOffset(0), outside=d.getMonth()!==m;
+   cells.push(`<div class="calday ${outside?'out':''}"><div class="calnum ${isToday?'today':''}"><span>${d.getDate()}</span></div>
+   ${acts.slice(0,4).map(a=>{let c=clientById(a.clientId);return `<div class="calevent" title="${esc(a.note||a.type)}" onclick="editSchedule(\'${a.id}\')" style="cursor:pointer"><b>${new Date(a.date).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}</b> ${esc(c?.name||"Unknown")}<div class="calagent">${esc(c?.agent||"")} · ${esc(a.type)}</div></div>`}).join("")}
+   ${acts.length>4?`<div class="calagent">+${acts.length-4} more</div>`:""}</div>`);
+ }
+ calendarGrid.innerHTML=cells.join("");
+}
+function renderPerformance(){
+let max=1;let rows=state.agents.map(a=>a.name).map(agent=>{let cs=state.clients.filter(c=>c.agent===agent), acts=state.activities.filter(a=>clientById(a.clientId)?.agent===agent), closed=cs.filter(c=>c.status==="Closing/Recruited"), rate=cs.length?Math.round(acts.length/cs.length*100):0, cr=cs.length?(closed.length/cs.length*100):0,ape=closed.reduce((s,c)=>s+Number(c.ape||0),0);max=Math.max(max,rate);return{agent,db:cs.length,act:acts.length,rate,closed:closed.length,cr,ape}}).filter(x=>x.db||x.act);
+performanceRows.innerHTML=rows.length?rows.map(x=>`<tr><td><b>${x.agent}</b></td><td>${x.db}</td><td>${x.act}</td><td><div class="bar"><i style="width:${Math.min(x.rate,100)}%"></i></div>${x.rate}%</td><td>${x.closed}</td><td>${x.cr.toFixed(1)}%</td><td>${money(x.ape)}</td></tr>`).join(""):`<tr><td colspan="7" class="empty">Belum ada data.</td></tr>`;
+}
+function renderTeam(){
+teamGrid.innerHTML=state.agents.length?state.agents.map(a=>{
+ let cs=state.clients.filter(c=>c.agent===a.name), acts=state.activities.filter(x=>clientById(x.clientId)?.agent===a.name);
+ return `<div class="agentcard"><div class="agenttop"><b>${esc(a.name)}</b><span class="${a.active?'badgeActive':'badgeInactive'}">${a.active?'ACTIVE':'INACTIVE'}</span></div>
+ <div class="agentstats"><div><b>${cs.length}</b><br><span class="muted">Clients</span></div><div><b>${acts.length}</b><br><span class="muted">Activities</span></div></div>
+ <div class="agentbuttons"><button class="secondary" onclick="editAgent('${a.id}')">Edit</button><button class="secondary" onclick="toggleAgent('${a.id}')">${a.active?'Deactivate':'Activate'}</button><button class="danger" onclick="deleteAgent('${a.id}')">Delete</button></div></div>`
+}).join(""):`<div class="empty">Belum ada agent.</div>`;
+}
+function fillAgentSelect(){
+ let current=clientAgent.value;
+ clientAgent.innerHTML=activeAgents().map(a=>`<option>${esc(a.name)}</option>`).join("");
+ if([...clientAgent.options].some(o=>o.value===current)) clientAgent.value=current;
+}
+window.editAgent=id=>{let a=state.agents.find(x=>x.id===id);if(!a)return;agentId.value=a.id;agentName.value=a.name;agentActive.value=String(a.active);agentModalTitle.textContent="Edit Agent";agentModal.classList.add("open")}
+window.toggleAgent=id=>{let a=state.agents.find(x=>x.id===id);if(a){a.active=!a.active;save()}}
+window.deleteAgent=id=>{let a=state.agents.find(x=>x.id===id);if(!a)return;let used=state.clients.some(c=>c.agent===a.name);if(used){if(!confirm(`${a.name} masih memiliki client. Hapus agent dari Team Management? Data client lama tetap menyimpan nama agent.`))return;}else if(!confirm(`Hapus agent ${a.name}?`))return;state.agents=state.agents.filter(x=>x.id!==id);save()}
+function renderInsights(){let today=dateOffset(0), overdue=state.clients.filter(c=>c.follow&&c.follow<today&&c.status!=="Closing/Recruited"), pending=state.clients.filter(c=>["Follow Up","Appointment","Presentation","Belum Direkrut"].includes(c.status));insightList.innerHTML=`<div class="insight"><b>${overdue.length}</b> follow-up overdue.</div><div class="insight"><b>${pending.length}</b> prospects currently in active pipeline.</div><div class="insight"><b>${state.clients.filter(c=>c.status==="Closing/Recruited").length}</b> clients closing/recruited.</div>`}
+function fillClientSelect(){activityClient.innerHTML=state.clients.map(c=>`<option value="${c.id}">${esc(c.name)} — ${esc(c.agent)}</option>`).join("")}
+function openClient(c={}){clientId.value=c.id||"";clientName.value=c.name||"";fillAgentSelect();clientAgent.value=c.agent||(activeAgents()[0]?.name||"");clientSource.value=c.source||"Referral";clientStatus.value=c.status||"Belum Diprospek";clientPhone.value=c.phone||"";clientNote.value=c.note||"";clientApe.value=c.ape||"";clientModalTitle.textContent=c.id?"Edit Client":"Add Client";clientModal.classList.add("open")}
+window.editClient=id=>openClient(clientById(id));
+window.deleteClient=id=>{if(confirm("Hapus client ini?")){state.clients=state.clients.filter(c=>c.id!==id);state.activities=state.activities.filter(a=>a.clientId!==id);save()}}
+document.querySelectorAll(".nav button").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));document.getElementById(btn.dataset.page).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");pageTitle.textContent=btn.dataset.page==="ai"?"AI Assistant":btn.dataset.page[0].toUpperCase()+btn.dataset.page.slice(1)});
+STATUSES.forEach(x=>{clientStatus.insertAdjacentHTML("beforeend",`<option>${x}</option>`);activityStatus.insertAdjacentHTML("beforeend",`<option>${x}</option>`)});
+addAgentBtn.onclick=()=>{agentId.value="";agentName.value="";agentActive.value="true";agentModalTitle.textContent="Add Agent";agentModal.classList.add("open")};
+saveAgentBtn.onclick=()=>{let name=agentName.value.trim();if(!name)return alert("Nama agent wajib diisi.");let duplicate=state.agents.some(a=>a.name.toLowerCase()===name.toLowerCase()&&a.id!==agentId.value);if(duplicate)return alert("Nama agent sudah ada.");if(agentId.value){let a=state.agents.find(x=>x.id===agentId.value);if(a){let old=a.name;a.name=name;a.active=agentActive.value==="true";state.clients.forEach(c=>{if(c.agent===old)c.agent=name})}}else state.agents.push({id:crypto.randomUUID(),name,active:agentActive.value==="true"});agentModal.classList.remove("open");save()};
+newClientBtn.onclick=()=>openClient(); search.oninput=renderClients;filter.onchange=renderClients;
+saveClientBtn.onclick=()=>{if(!clientName.value.trim())return alert("Nama client wajib diisi.");let cExisting=state.clients.find(c=>c.id===clientId.value);let obj={id:clientId.value||crypto.randomUUID(),name:clientName.value.trim(),agent:clientAgent.value,source:clientSource.value.trim(),status:clientStatus.value,phone:clientPhone.value.trim(),follow:cExisting?.follow||"",note:clientNote.value.trim(),ape:Number(clientApe.value||0)};let i=state.clients.findIndex(c=>c.id===obj.id);if(i>=0)state.clients[i]=obj;else state.clients.push(obj);clientModal.classList.remove("open");save()};
+function openNewSchedule(){
+ if(!state.clients.length)return alert("Tambahkan client dulu.");
+ activityId.value=""; activityModalTitle.textContent="Add Schedule"; deleteActivityBtn.classList.add("hidden");
+ activityDate.value=new Date().toISOString().slice(0,16); activityType.value="Prospek"; activityStatus.value=STATUSES[0]; activityNote.value="";
+ fillClientSelect(); activityModal.classList.add("open");
+}
+window.editSchedule=id=>{
+ let a=state.activities.find(x=>x.id===id); if(!a)return;
+ activityId.value=a.id; activityModalTitle.textContent="Edit Schedule"; deleteActivityBtn.classList.remove("hidden");
+ fillClientSelect(); activityClient.value=a.clientId; activityDate.value=a.date; activityType.value=a.type; activityStatus.value=a.status; activityNote.value=a.note||"";
+ activityModal.classList.add("open");
+};
+addActivityBtn.onclick=openNewSchedule;
+prevMonth.onclick=()=>{calendarCursor.setMonth(calendarCursor.getMonth()-1);renderSchedule()};
+nextMonth.onclick=()=>{calendarCursor.setMonth(calendarCursor.getMonth()+1);renderSchedule()};
+todayMonth.onclick=()=>{calendarCursor=new Date();calendarCursor.setDate(1);renderSchedule()};
+saveActivityBtn.onclick=()=>{
+ if(!activityClient.value||!activityDate.value)return alert("Client dan tanggal wajib diisi.");
+ let obj={id:activityId.value||crypto.randomUUID(),clientId:activityClient.value,date:activityDate.value,type:activityType.value,status:activityStatus.value,note:activityNote.value.trim()};
+ let i=state.activities.findIndex(a=>a.id===obj.id);
+ if(i>=0) state.activities[i]=obj; else state.activities.push(obj);
+ let c=clientById(activityClient.value); if(c)c.status=activityStatus.value;
+ activityModal.classList.remove("open"); activityId.value=""; activityNote.value=""; save();
+};
+deleteActivityBtn.onclick=()=>{
+ let id=activityId.value; if(!id)return;
+ if(confirm("Hapus schedule ini?")){state.activities=state.activities.filter(a=>a.id!==id);activityModal.classList.remove("open");activityId.value="";save()}
+};
+document.querySelectorAll(".closeModal").forEach(b=>b.onclick=()=>document.querySelectorAll(".modal").forEach(m=>m.classList.remove("open")));
+generateMsg.onclick=()=>{let today=dateOffset(0),c=state.clients.find(x=>x.follow&&x.follow<=today&&x.status!=="Closing")||state.clients[0];alert(c?`Draft untuk ${c.name}: Hi ${c.name}, aku follow up santai ya 😊 Kemarin kita sempat bahas kebutuhan kamu. Kalau ada bagian yang mau ditanyain atau dibandingkan, kabarin aku ya.`:"Belum ada client.")};
+askAiBtn.onclick=()=>{let q=aiQuestion.value.toLowerCase(),today=dateOffset(0), overdue=state.clients.filter(c=>c.follow&&c.follow<=today&&c.status!=="Closing/Recruited");let ans=q.includes("follow")?`Ada ${overdue.length} client yang perlu follow-up sekarang: ${overdue.slice(0,5).map(c=>c.name).join(", ")||"tidak ada"}.`:q.includes("closing")?`Total closing/recruited saat ini ${state.clients.filter(c=>c.status==="Closing/Recruited").length}.`:`Saat ini ada ${state.clients.length} client, ${state.activities.length} activity tercatat, dan ${overdue.length} follow-up jatuh tempo.`;aiAnswer.innerHTML=`<div class="insight">${esc(ans)}</div>`};
+renderAll();
+</script>
+</body></html>
